@@ -1,6 +1,6 @@
 import koaBody from 'koa-body';
 import bodyParser from 'koa-bodyparser';
-import cors from '@koa/cors';
+import cors from 'koa2-cors';
 import Router from '@koa/router';
 import Koa from 'koa';
 import { faker } from '@faker-js/faker/locale/ru';
