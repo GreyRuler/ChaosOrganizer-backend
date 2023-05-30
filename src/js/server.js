@@ -7,7 +7,7 @@ import WebSocket, { WebSocketServer } from 'ws';
 import http from 'http';
 import uploadDir from './utils/uploadDir.js';
 import getMessagesSlice from './routes/message/utils/messagesSlice.js';
-import { newMessage } from './db/messages.js';
+import messages, { newMessage } from './db/messages.js';
 import favouritesRouter from './routes/favourites/index.js';
 import searchRouter from './routes/search/index.js';
 import filesRouter from './routes/files/index.js';
@@ -18,13 +18,8 @@ const port = 3000;
 const app = new Koa();
 const router = new Router();
 
-app.use(favouritesRouter.routes());
-app.use(searchRouter.routes());
-app.use(filesRouter.routes());
-app.use(ioRouter.routes());
-app.use(messagesRouter.routes());
-app.use(router.allowedMethods());
 app.use(cors());
+app.use(router.allowedMethods());
 app.use(koaBody({
 	multipart: true,
 	formidable: {
@@ -33,6 +28,11 @@ app.use(koaBody({
 	},
 }));
 app.use(bodyParser());
+app.use(favouritesRouter.routes());
+app.use(searchRouter.routes());
+app.use(filesRouter.routes());
+app.use(ioRouter.routes());
+app.use(messagesRouter.routes());
 
 const server = http.createServer(app.callback()).listen(port, () => {
 	// eslint-disable-next-line no-console
@@ -54,6 +54,6 @@ wsServer.on('connection', (ws) => {
 		const message = newMessage(text);
 		sendAllUsers(JSON.stringify([message]));
 	});
-	const result = getMessagesSlice(10);
+	const result = getMessagesSlice(messages, 10);
 	ws.send(JSON.stringify(result));
 });

@@ -1,13 +1,13 @@
 import Router from '@koa/router';
 import getMessagesSlice from './utils/messagesSlice.js';
-import { newMessage } from '../../db/messages.js';
+import messages, { newMessage } from '../../db/messages.js';
 
 const messagesRouter = new Router();
 
 messagesRouter.get('/messages/:count', (ctx) => {
 	// eslint-disable-next-line no-shadow
 	const { count } = ctx.params;
-	const result = getMessagesSlice(count);
+	const result = getMessagesSlice(messages, count);
 	ctx.body = {
 		status: 'ok',
 		messages: result.reverse(),
