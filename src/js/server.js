@@ -158,7 +158,9 @@ router.post('/favourites/:id', async (ctx) => {
 	ctx.status = 200;
 });
 
-const wsServer = new WebSocketServer({});
+const wsServer = new WebSocketServer({
+	port: 3030,
+});
 
 function sendAllUsers(message) {
 	Array.from(wsServer.clients)
