@@ -88,3 +88,5 @@ typings/
 # Thumbnails
 Thumbs.db
 Thumbs.db:encryptable
+
+src/js/public
