@@ -5,7 +5,7 @@ import Router from '@koa/router';
 import Koa from 'koa';
 import WebSocket, { WebSocketServer } from 'ws';
 import http from 'http';
-import uploadDir from './utils/uploadDir.js';
+import uploadDir from './uploadDir.js';
 import getMessagesSlice from './routes/message/utils/messagesSlice.js';
 import messages, { newMessage } from './db/messages.js';
 import favouritesRouter from './routes/favourites/index.js';
@@ -18,8 +18,6 @@ const port = 3000;
 const app = new Koa();
 const router = new Router();
 
-app.use(cors());
-app.use(router.allowedMethods());
 app.use(koaBody({
 	multipart: true,
 	formidable: {
@@ -28,6 +26,8 @@ app.use(koaBody({
 	},
 }));
 app.use(bodyParser());
+app.use(cors());
+app.use(router.allowedMethods());
 app.use(favouritesRouter.routes());
 app.use(searchRouter.routes());
 app.use(filesRouter.routes());

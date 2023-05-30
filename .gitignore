@@ -89,4 +89,4 @@ typings/
 Thumbs.db
 Thumbs.db:encryptable
 
-src/js/public
+src/js/public/uploads/
