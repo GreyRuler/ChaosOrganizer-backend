@@ -1,6 +1,6 @@
 import Router from '@koa/router';
-import getMessagesSlice from './utils/messagesSlice';
-import { newMessage } from '../../db/messages';
+import getMessagesSlice from './utils/messagesSlice.js';
+import { newMessage } from '../../db/messages.js';
 
 const messagesRouter = new Router();
 

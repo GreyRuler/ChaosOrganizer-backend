@@ -1,8 +1,8 @@
 import path from 'path';
 import fs from 'fs';
 import Router from '@koa/router';
-import uploadDir from '../../utils/uploadDir';
-import { newMessage } from '../../db/messages';
+import uploadDir from '../../utils/uploadDir.js';
+import { newMessage } from '../../db/messages.js';
 
 const filesRouter = new Router();
 

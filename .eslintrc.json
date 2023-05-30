@@ -1,7 +1,11 @@
 {
 	"root": true,
+	"plugins": [
+		"import"
+	],
 	"extends": [
-		"airbnb-base"
+		"airbnb-base",
+		"plugin:import/recommended"
 	],
 	"env": {
 		"es6": true,
@@ -32,15 +36,12 @@
 			"error",
 			"never"
 		],
-		"import/extensions": [
-			"error",
-			"ignorePackages",
-			{
-				"js": "never",
-				"jsx": "never",
-				"ts": "never",
-				"tsx": "never"
-			}
+		"import/extensions": [ "error", "ignorePackages", { "": "never" } ]
+	},
+	"settings": {
+		"import/ignore": [
+			".js",
+			".jsx"
 		]
 	}
 }

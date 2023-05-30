@@ -1,5 +1,5 @@
 import Router from '@koa/router';
-import messages from '../../db/messages';
+import messages from '../../db/messages.js';
 
 const searchRouter = new Router();
 
